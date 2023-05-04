@@ -1,0 +1,19 @@
+//872. Leaf-Similar Trees
+class Solution {
+public:
+    int helper(TreeNode *root,vector<int>& ans){
+        if(root==NULL) return 0;
+        int l=helper(root->left,ans);
+        int r=helper(root->right,ans);
+        if(l==0 && r==0) ans.push_back(root->val);
+        return 2;
+    }
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+        vector<int>v1;
+        vector<int>v2;
+        int t1=helper(root1,v1);
+        int t2=helper(root2,v2);
+        if(v1==v2) return true;
+        return false;
+    }
+};

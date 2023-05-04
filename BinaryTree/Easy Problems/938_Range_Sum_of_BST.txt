@@ -1,0 +1,19 @@
+//938. Range Sum of BST
+
+class Solution {
+public:
+    vector<int>v;
+    void inorder(TreeNode* node,int low ,int high){
+        if(node==NULL) return;
+        inorder(node->left,low,high);
+        if(node->val<=high && node->val>=low) v.push_back(node->val);
+        inorder(node->right,low,high);
+    }
+
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        inorder(root,low,high);
+        int sum=0;
+        for(int num:v) sum+=num;
+        return sum;
+    }
+};

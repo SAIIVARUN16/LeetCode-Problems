@@ -1,0 +1,18 @@
+//897. Increasing Order Search Tree
+class Solution {
+public:
+    void inorder(TreeNode* root,TreeNode*&curr){
+        if(!root)return;
+        inorder(root->left,curr);
+        curr->right=new TreeNode(root->val);
+        curr=curr->right;
+        inorder(root->right,curr);
+    }
+    TreeNode* increasingBST(TreeNode* root) {
+        TreeNode* curr=new TreeNode();
+        TreeNode* head=curr;
+        inorder(root,curr);
+        return head->right;
+        
+    }
+};

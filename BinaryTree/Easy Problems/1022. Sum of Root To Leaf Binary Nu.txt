@@ -1,0 +1,26 @@
+//1022. Sum of Root To Leaf Binary Numbers
+
+class Solution {
+public:
+    int sum=0;
+    void helper(TreeNode* root,vector<int>v){
+        if(root==NULL) return;
+        if((root->left==NULL && root->right==NULL)) {
+            if(root!=NULL) v.push_back(root->val);
+            int j=0;
+            for(int i=v.size()-1;i>=0;i--){
+                sum+=(v[i])*(1<<j);
+                j++;
+            }
+            return;
+        }
+        v.push_back(root->val);
+        helper(root->left,v);
+        helper(root->right,v);
+    }
+    int sumRootToLeaf(TreeNode* root) {
+        vector<int>v;
+        helper(root,v);
+        return sum;
+    }
+};

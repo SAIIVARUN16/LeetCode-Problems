@@ -1,0 +1,26 @@
+//993. Cousins in Binary Tree
+class Solution {
+public:
+    int helper(TreeNode *root,int target,int &parent,int height){
+        if(root==NULL) return 0;
+        if(root->val==target) return height;
+        parent=root->val;
+        int h1=helper(root->left,target,parent,height+1);
+        if(h1!=0) return h1;
+        parent=root->val;
+        int h2=helper(root->right,target,parent,height+1);
+        return h2;
+    }
+    bool isCousins(TreeNode* root, int x, int y) {
+        if(root==NULL) return false;
+        if(root->val==x || root->val==y)
+            return false;
+        int parent1=-1;
+        int h1=helper(root,x,parent1,0);
+        int parent2=-1;
+        int h2=helper(root,y,parent2,0);
+        if(parent1==parent2) return false;
+        if((h1!=0 && h2!=0) && h1==h2) return true;
+        return false;
+    }
+};

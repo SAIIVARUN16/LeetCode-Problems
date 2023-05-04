@@ -1,0 +1,18 @@
+//111. Minimum Depth of Binary Tree
+class Solution {
+public:
+    int mini=INT_MAX; 
+    void helper(TreeNode *root,int height){
+        if(root==NULL) return;
+        if(root->left==NULL && root->right==NULL){
+            mini=min(mini,height);
+        }
+        helper(root->left,height+1);
+        helper(root->right,height+1);
+    }
+    int minDepth(TreeNode* root) {
+        if(root==NULL) return 0;
+        helper(root,0);
+        return mini+1;
+    }
+};

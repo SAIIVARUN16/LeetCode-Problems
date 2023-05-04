@@ -1,0 +1,17 @@
+//2331. Evaluate Boolean Binary Tree
+class Solution {
+public:
+    int postorder(TreeNode* root){
+        if(root->val==0) return 0;
+        else if(root->val==1) return 1;
+        int a=evaluateTree(root->left);
+        int b=evaluateTree(root->right);
+        if(root->val==2) return a || b;
+        return a && b;
+    }
+    bool evaluateTree(TreeNode* root) {
+        int ans=postorder(root);
+        if(ans==1) return true;
+        return false;
+    }
+};

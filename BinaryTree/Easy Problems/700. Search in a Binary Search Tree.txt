@@ -1,0 +1,21 @@
+//700. Search in a Binary Search Tree
+class Solution {
+public:
+    TreeNode *ans=NULL;
+    int flag=0;
+    void helper(TreeNode* root, int val){
+        if(root==NULL || flag==1) return;
+        if(val<root->val)
+            helper(root->left,val);
+        else if(val>root->val)
+            helper(root->right,val);
+        else {
+            ans=root;
+            flag=1;
+        }
+    }
+    TreeNode* searchBST(TreeNode* root, int val) {
+        helper(root,val);
+        return ans;
+    }
+};

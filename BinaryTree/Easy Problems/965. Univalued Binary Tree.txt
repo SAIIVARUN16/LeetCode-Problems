@@ -1,0 +1,20 @@
+//965. Univalued Binary Tree
+class Solution {
+public:
+    bool ans=true;
+    void helper(TreeNode *root){
+        if(root==NULL) return ;
+        if(root->left!=NULL){
+            if(root->left->val!=root->val) ans=false;
+        }
+        if(root->right!=NULL){
+            if(root->right->val!=root->val) ans=false;
+        }
+        helper(root->left);
+        helper(root->right);
+    }
+    bool isUnivalTree(TreeNode* root) {
+        helper(root);
+        return ans;
+    }
+};

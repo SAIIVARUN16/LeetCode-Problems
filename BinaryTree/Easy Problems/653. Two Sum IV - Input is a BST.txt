@@ -1,0 +1,25 @@
+//653. Two Sum IV - Input is a BST
+class Solution {
+public:
+    void helper(TreeNode *root,vector<int>&v){
+        if(root==NULL) return;
+        helper(root->left,v);
+        v.push_back(root->val);
+        helper(root->right,v);
+    }
+    bool findTarget(TreeNode* root, int k) {
+        vector<int>v;
+        helper(root,v);        
+        bool ans=false;
+        int i=0,j=v.size()-1;
+        while(i<j){
+            if(v[i]+v[j]==k) {
+                ans=true;
+                break;
+            }
+            if(v[i]+v[j]<k) i++;
+            else j--;
+        }
+        return ans;
+    }
+};

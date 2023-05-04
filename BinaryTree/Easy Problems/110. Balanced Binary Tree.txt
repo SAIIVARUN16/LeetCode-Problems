@@ -1,0 +1,16 @@
+//110. Balanced Binary Tree
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        return function1(root)!=-1;
+    }
+    int function1(TreeNode* root){
+        if(root==NULL) return 0;
+        int left=function1(root->left);
+        if(left==-1) return -1;
+        int right=function1(root->right);
+        if(right==-1) return -1;
+        if(abs(left-right)>1) return -1;
+        return 1+max(left,right);
+    }
+};
